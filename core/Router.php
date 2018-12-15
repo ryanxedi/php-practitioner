@@ -3,24 +3,38 @@
 class Router
 {
 
-	protected $routes = [];
+	public $routes = [
 
-	public function define($routes)
+		'GET' => [],
+		'POST' => []
+
+	];
+
+
+	public function get($uri, $controller)
 
 	{
 
-		$this->routes = $routes;
+		$this->routes['GET'][$uri] = $controller;
+
+	}
+
+	public function post($uri, $controller)
+
+	{
+
+		$this->routes['POST'][$uri] = $controller;
 
 	}
 
 
-	public function direct($uri)
+	public function direct($uri, $requestType)
 
 	{
 
-		if (array_key_exists($uri, $this->routes)) {
+		if (array_key_exists($uri, $this->routes[$requestType])) {
 
-			return $this->routes[$uri];
+			return $this->routes[$requestType][$uri];
 		}
 
 		throw new Exception('No route defined for this URI.');
