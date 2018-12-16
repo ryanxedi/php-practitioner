@@ -1,5 +1,9 @@
 <?php
 
+namespace App\Controllers;
+
+use App\Core\App;
+
 class UsersController
 
 {
@@ -20,5 +24,6 @@ class UsersController
 	return redirect('users');
 
 	}
+
 
 }
